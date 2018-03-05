@@ -1,5 +1,7 @@
 <template>
 
+  <section>
+      <h2>SYNTHESE DE VOTRE COMPTE</h2>
   
     <table class="table table-striped">
     <thead>
@@ -20,6 +22,13 @@
         <td>{{mouv.categorie}}</td>
         <td>{{mouv.debit}}</td>
         <td>{{mouv.credit}}</td>
+               <button
+    type="button"
+    class="btn btn-link"
+    @click="onclick()"
+    >
+      Remove
+</button>
       </tr>
     </tbody>
      <tfoot>
@@ -30,21 +39,27 @@
      </tfoot>
 
   </table>
-  
+  </section>
 </template>
 
 <script>
-import AddMouv from "./AddMouv.vue";
+// import addmouv from "./addmouv.vue";
 export default {
-  name: "AccountTable",
+  name: "accounttable",
   components: {
-    AddMouv
+    // addmouv
   },
   props: {
     mouvs: {
       type: Array,
       required: true
     }
+  },
+  methods:  {
+    onclick() {
+      this.$emit("onclick", Object.assign({}, this.mouv))
+    },
+        
   }
 };
 </script>

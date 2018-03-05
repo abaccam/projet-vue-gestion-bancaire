@@ -2,12 +2,11 @@
 <section>
 <img src="../assets/dog.jpg" alt="dog" >
   <div class="container">
-    <h2>GESTION DE VOTRE COMPTE</h2>
-   
-      <AddMouv></AddMouv>
-      <h2>SYNTHESE DE VOTRE COMPTE</h2>
-      <AccountTable :mouvs="mouvs"></AccountTable>
-
+    <div>
+      <addmouv @onSubmit = "mouv => add(mouv)"></addmouv>
+      <accounttable :mouvs = mouvs @onclick = "mouv => remove(mouv)"></accounttable>
+    </div>
+      
   </div>
   
 </section>
@@ -16,19 +15,19 @@
 </template>
 
 <script>
-import AccountTable from './AccountTable.vue';
-import AddMouv from './AddMouv.vue';
+import accounttable from './accounttable.vue';
+import addmouv from './addmouv.vue';
 
 export default {
-  name: 'BankManager',
+  name: 'bankmanager',
   components: {
-    AccountTable,
-    AddMouv
+    accounttable,
+    addmouv
   },
   data: function() {
     return {
       mouvs: [
-        {id: 1, date:"09.09.2000", origine:"fdj",  categorie:"loisir",debit: 0, credit: 500}
+        {id: 1, date:"2012-03-02", origine:"simplon",  categorie:"emploi",debit: 0, credit: 100}
         ]
     };
   },
@@ -36,8 +35,8 @@ export default {
     add: function(mouv) {
      this.mouvs.push(mouv);
     }, // ou add(mouv){this.mouvs.push(mouv);}
-    deleteById: function(mouvId) {
-     this.mouvs = this.mouvs.filter(mouv => mouv.id !== mouvId);
+    remove(mouv) {
+      this.mouvs.splice(mouv, 1);
     },
     totalDebit: function() {
           

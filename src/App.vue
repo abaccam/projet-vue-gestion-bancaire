@@ -5,7 +5,7 @@
   <main id="app">
     <!-- On peut mettre une balise représentant un autre component si
     on l'a au préalable ajouter dans la liste des components du controller -->
-    <BankManager></BankManager>
+    <bankmanager></bankmanager>
   </main>
 </template>
 
@@ -16,7 +16,7 @@
  * mettre peu ou pas de html ou de logique, juste l'appels aux autres
  * components.
  */
-import BankManager from './components/BankManager.vue';
+import bankmanager from './components/bankmanager.vue';
 /**
  * Ici, on crée le component app et on lui dit qu'il contient comme sous
  * component le component DogManager
@@ -24,7 +24,7 @@ import BankManager from './components/BankManager.vue';
 export default {
   name: 'app',
   components: {
-    BankManager
+    bankmanager
   }
 }
 </script>
