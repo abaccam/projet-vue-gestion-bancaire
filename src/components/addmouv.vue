@@ -3,7 +3,9 @@
   <h2>GESTION DE VOTRE COMPTE</h2>
   
  <form @submit.prevent="onSubmit()">
-   
+  <!-- <input type="number" name="id" placeholder="id" v-model="mouv.id"> -->
+
+
   <input type="date" name="date" placeholder="Date" v-model="mouv.date">
   <input type="text" name="origine" placeholder="Origine" v-model="mouv.origine">
 
@@ -48,7 +50,7 @@ export default {
   data: function(){
     return {
       mouv:
-   {date:"", origine:"",  categorie:"",debit:0, credit:0}
+   {id:"", date:"", origine:"",  categorie:"",debit:0, credit:0}
     }
   },
   methods:  {

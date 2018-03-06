@@ -15,20 +15,20 @@
       </tr>
     </thead> 
     <tbody>
-      <tr v-for="mouv of mouvs" :key="mouv.id">
+      <tr v-for="(mouv, index) of mouvs" :key="index">
         <td>{{mouv.id}}</td>
         <td>{{mouv.date}}</td>
         <td>{{mouv.origine}}</td>
         <td>{{mouv.categorie}}</td>
         <td>{{mouv.debit}}</td>
         <td>{{mouv.credit}}</td>
-               <button
-    type="button"
-    class="btn btn-link"
-    @click="onclick()"
-    >
+      <button
+        type="button"
+        class="btn btn-link"
+        @click="onclick(index)"
+        >
       Remove
-</button>
+      </button>
       </tr>
     </tbody>
      <tfoot>
@@ -56,8 +56,8 @@ export default {
     }
   },
   methods:  {
-    onclick() {
-      this.$emit("onclick", Object.assign({}, this.mouv))
+    onclick(index) {
+      this.$emit("onclick", index)
     },
         
   }

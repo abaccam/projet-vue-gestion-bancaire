@@ -4,7 +4,7 @@
   <div class="container">
     <div>
       <addmouv @onSubmit = "mouv => add(mouv)"></addmouv>
-      <accounttable :mouvs = mouvs @onclick = "mouv => remove(mouv)"></accounttable>
+      <accounttable :mouvs ="(mouvs)" @onclick = "index => remove(index)"></accounttable>
     </div>
       
   </div>
@@ -35,8 +35,8 @@ export default {
     add: function(mouv) {
      this.mouvs.push(mouv);
     }, // ou add(mouv){this.mouvs.push(mouv);}
-    remove(mouv) {
-      this.mouvs.splice(mouv, 1);
+    remove(index) {
+      this.mouvs.splice(index, 1);
     },
     totalDebit: function() {
           
