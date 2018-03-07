@@ -1,38 +1,40 @@
 <template>
 <section>
-  <h2>GESTION DE VOTRE COMPTE</h2>
-  
- <form @submit.prevent="onSubmit()">
+  <div class="container" id="gestionDiv">
+    <div id="gestion">
+      <h2>GESTION DE VOTRE COMPTE</h2>
+    </div>
+    <div id="gestionForm"> 
+    <form @submit.prevent="onSubmit()">
   <!-- <input type="number" name="id" placeholder="id" v-model="mouv.id"> -->
+      <input type="date" name="date" placeholder="Date" v-model="mouv.date" id="inputSize">
+      <input type="text" name="origine" placeholder="Origine" v-model="mouv.origine">
 
+      <select id="listeCategorie" v-model="mouv.categorie" required>
+        <option value="">Sélectionnez une catégorie</option>
+        <option value="Emploi">Emploi</option>
+        <option value="Logement">Logement</option> 
+        <option value="Alimentation">Alimentation</option>
+        <option value="Loisirs">Loisirs</option>
+        <option value="Sante">Santé</option>
+        <option value="Habillement">Habillement</option> 
+        <option value="Meubles">Meubles</option>
+        <option value="Transports">Transports</option>
+        <option value="Communications">Communications</option>
+        <option value="Enseignement">Enseignement</option> 
+        <option value="Restauration">Restauration et hôtels</option>
+        <option value="Divers">Biens et services divers</option>
+        <option value="Autres">Autres</option>
+      </select>
 
-  <input type="date" name="date" placeholder="Date" v-model="mouv.date">
-  <input type="text" name="origine" placeholder="Origine" v-model="mouv.origine">
-
-  <select id="listeCategorie" v-model="mouv.categorie" required>
-    <option value="">Sélectionnez une catégorie</option>
-    <option value="Emploi">Emploi</option>
-    <option value="Logement">Logement</option> 
-    <option value="Alimentation">Alimentation</option>
-    <option value="Loisirs">Loisirs</option>
-    <option value="Sante">Santé</option>
-    <option value="Habillement">Habillement</option> 
-    <option value="Meubles">Meubles</option>
-    <option value="Transports">Transports</option>
-    <option value="Communications">Communications</option>
-    <option value="Enseignement">Enseignement</option> 
-    <option value="Restauration">Restauration et hôtels</option>
-    <option value="Divers">Biens et services divers</option>
-    <option value="Autres">Autres</option>
-  </select>
-
-  <label for="debit">Débit</label>
-  <input type="number" name="debit" placeholder="Débit" v-model="mouv.debit">
-  <label for="credit">Crédit</label>
-  <input type="number" name="credit" placeholder="Crédit" v-model="mouv.credit">
- <button type="submit" >Valider</button>
-</form>
-  
+      <label for="debit">Débit</label>
+      <input type="number" name="debit" placeholder="Débit" v-model="mouv.debit" id="inputSize">
+      <label for="credit">Crédit</label>
+      <input type="number" name="credit" placeholder="Crédit" v-model="mouv.credit" id="inputSize">
+      <button type="submit" class="btn btn-danger" >Valider</button>
+    </form>
+  </div> 
+</div>
  
 </section>
 
@@ -45,6 +47,10 @@
 </template>
 
 <script>
+// import {HTTP} from '../http-constants'
+
+// HTTP.get(...).then(...).catch(...)
+
 export default {
   name:'addmouv',
   data: function(){
@@ -64,4 +70,21 @@ export default {
 
 <style>
 
+#gestionDiv{
+  /* border:2px solid red; */
+  height: 150px;
+}
+#gestion{
+  /* margin-top: 10px; */
+  /* border:2px solid blue; */
+  height: 50px;
+  
+}
+#gestionForm{
+  /* border:2px solid green; */
+  margin-top: 10px;
+}
+#inputSize{
+  width: 130px;
+}
 </style>

@@ -1,22 +1,32 @@
 <template>
-<section>
-<img src="../assets/dog.jpg" alt="dog" >
-  <div class="container">
+<section >
+    
+  <div class="container" id="header">
+    <div id="logoDiv">
+    <img src="../assets/MazeBank2.jpg" alt="MazeBank" >
+    </div>
+  </div>
+
+
+  <div class="container" id="pageColor">
     <div>
       <addmouv @onSubmit = "mouv => add(mouv)"></addmouv>
-      <accounttable :mouvs ="(mouvs)" @onclick = "index => remove(index)"></accounttable>
+
+      <accounttable 
+      :mouvs ="(mouvs)" 
+      @onclick = "index => remove(index)">
+      </accounttable>
+
     </div>
-      
   </div>
-  
+
 </section>
-    
-  
 </template>
 
 <script>
 import accounttable from './accounttable.vue';
 import addmouv from './addmouv.vue';
+import Dao from '../Dao.js';
 
 export default {
   name: 'bankmanager',
@@ -26,10 +36,8 @@ export default {
   },
   data: function() {
     return {
-      mouvs: [
-        {id: 1, date:"2012-03-02", origine:"simplon",  categorie:"emploi",debit: 0, credit: 100}
-        ]
-    };
+      mouvs: []
+    }
   },
   methods: {
     add: function(mouv) {
@@ -46,16 +54,37 @@ export default {
     },
     resultDC: function() {
       
+    },
+   
+  },
+
+  beforeCreate(){
+      Dao.getAll().then((response) => {
+        this.mouvs = response.data
+      })
     }
-  }
 }
+
 </script>
 
 <style>
+#header{
+  padding: 0;
+}
+
 img{
-  border:5px solid black;
-  border-radius: 10px;
-  width: 100px;
+  width: 300px;
+}
+
+#logoDiv{
+  border-block-end: 5px solid #DC3545;
+  border-block-start: 5px solid #DC3545;
+  background-color:rgb(240, 240, 240);
+}
+
+#pageColor{
+  background-color:rgb(240, 240, 240);
+  padding: 0;
 }
 
 h2 {

@@ -1,8 +1,8 @@
 <template>
 
-  <section>
+  <section id="synthese">
       <h2>SYNTHESE DE VOTRE COMPTE</h2>
-  
+    <div>
     <table class="table table-striped">
     <thead>
       <tr>
@@ -27,7 +27,7 @@
         class="btn btn-link"
         @click="onclick(index)"
         >
-      Remove
+      Supprimer
       </button>
       </tr>
     </tbody>
@@ -39,11 +39,16 @@
      </tfoot>
 
   </table>
+  </div>
   </section>
 </template>
 
 <script>
 // import addmouv from "./addmouv.vue";
+// import {HTTP} from '../http-constants'
+
+// HTTP.get(...).then(...).catch(...)
+
 export default {
   name: "accounttable",
   components: {
@@ -65,5 +70,8 @@ export default {
 </script>
 
 <style>
-
+#synthese{
+  /* border:2px solid red; */
+  margin-top: 50px;
+}
 </style>
