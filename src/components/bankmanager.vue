@@ -10,11 +10,11 @@
 
   <div class="container" id="pageColor">
     <div>
-      <addmouv @onSubmit = "mouv => add(mouv)"></addmouv>
+      <addmouv @add = "mouv => add(mouv)"></addmouv>
 
       <accounttable 
-      :mouvs ="(mouvs)" 
-      @onclick = "index => remove(index)">
+      :mouvs ="mouvs" 
+      @onclick = "remove">
       </accounttable>
 
     </div>
@@ -40,11 +40,26 @@ export default {
     }
   },
   methods: {
-    add: function(mouv) {
-     this.mouvs.push(mouv);
-    }, // ou add(mouv){this.mouvs.push(mouv);}
-    remove(index) {
-      this.mouvs.splice(index, 1);
+    // add: function(mouv) {
+    //  this.mouvs.push(mouv);
+    // }, // ou add(mouv){this.mouvs.push(mouv);}
+    add(mouv) {
+      Dao.add(mouv).then(() => {
+          Dao.getAll().then((response) => {
+            this.mouvs = response.data
+          })
+      })    
+    },
+    
+    remove(id) {
+      // this.mouvs.splice(index, 1);
+      Dao.remove(id).then(() => {
+      Dao.getAll().then((response) => {
+      this.mouvs = response.data
+      })
+      })    
+      
+
     },
     totalDebit: function() {
           

@@ -12,29 +12,28 @@
         <th>Catégorie</th>
         <th>Débit</th>
         <th>Crédit</th>
+        <th>Supprimer</th>
       </tr>
     </thead> 
     <tbody>
-      <tr v-for="(mouv, index) of mouvs" :key="index">
+      <tr v-for="mouv of mouvs" :key="mouv.id">
         <td>{{mouv.id}}</td>
         <td>{{mouv.date}}</td>
         <td>{{mouv.origine}}</td>
         <td>{{mouv.categorie}}</td>
         <td>{{mouv.debit}}</td>
         <td>{{mouv.credit}}</td>
-      <button
-        type="button"
-        class="btn btn-link"
-        @click="onclick(index)"
-        >
-      Supprimer
-      </button>
+        <td>
+          <button type="button" class="btn btn-link" @click="onclick(mouv.id)">
+            <i class="far fa-trash-alt deleteIcon"></i>
+          </button>
+        </td>
       </tr>
     </tbody>
-     <tfoot>
+     <tfoot class="ligneTotal">
        <tr>
          <th>Total</th>
-         <td>100</td>
+            <td>{{totalCount}} €</td>
        </tr>
      </tfoot>
 
@@ -52,17 +51,31 @@
 export default {
   name: "accounttable",
   components: {
-    // addmouv
   },
   props: {
+    // addmouv
     mouvs: {
       type: Array,
       required: true
     }
   },
+  computed: {
+    totalCount: function() {
+      let totalC = 0;
+      let totalD = 0;
+      let total = 0;
+      for(let i = 0; i < this.mouvs.length; i++){
+        totalC += parseInt(this.mouvs[i].credit);
+        totalD += parseInt(this.mouvs[i].debit);
+        total = totalC-totalD
+      }       
+      return total;
+    }
+  },
+
   methods:  {
-    onclick(index) {
-      this.$emit("onclick", index)
+    onclick(id) {
+      this.$emit("onclick", id)
     },
         
   }
@@ -72,6 +85,13 @@ export default {
 <style>
 #synthese{
   /* border:2px solid red; */
-  margin-top: 50px;
+  margin-top: 20px;
 }
+.deleteIcon{
+  color: #949494;
+}
+.deleteIcon:hover{
+  color: #ef1e43;
+}
+
 </style>

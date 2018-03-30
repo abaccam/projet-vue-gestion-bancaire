@@ -1,11 +1,13 @@
 <template>
+
 <section>
-  <div class="container" id="gestionDiv">
+  <div class="container-col" id="gestionDiv">
     <div id="gestion">
       <h2>GESTION DE VOTRE COMPTE</h2>
+      <!-- <h5>{{totalDebit}}</h5> -->
     </div>
     <div id="gestionForm"> 
-    <form @submit.prevent="onSubmit()">
+    <form @submit.prevent="onSubmit(mouv)">
   <!-- <input type="number" name="id" placeholder="id" v-model="mouv.id"> -->
       <input type="date" name="date" placeholder="Date" v-model="mouv.date" id="inputSize">
       <input type="text" name="origine" placeholder="Origine" v-model="mouv.origine">
@@ -47,6 +49,8 @@
 </template>
 
 <script>
+
+
 // import {HTTP} from '../http-constants'
 
 // HTTP.get(...).then(...).catch(...)
@@ -56,19 +60,34 @@ export default {
   data: function(){
     return {
       mouv:
-   {id:"", date:"", origine:"",  categorie:"",debit:0, credit:0}
+   {id:"", date:"", origine:"",  categorie:"",debit:0, credit:0},
+      // totalDebit: 0
     }
   },
+  
   methods:  {
-    onSubmit() {
-      this.$emit("onSubmit", Object.assign({}, this.mouv))
-    },
-        
+    onSubmit(mouv) {
+      this.$emit("add", Object.assign({}, mouv))
+
+    //   let dao = new Dao
+    //   dao.getMouvById(1).then((response) => {
+    //   this.mouv = response.data
+    //   this.mouv.debit.forEach((mouv) => {
+    //     this.totalDebit += mouv.debit
+    //     })
+    // })
+    }   
   }
 }
 </script>
 
 <style>
+.container-col{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 #gestionDiv{
   /* border:2px solid red; */
@@ -80,10 +99,7 @@ export default {
   height: 50px;
   
 }
-#gestionForm{
-  /* border:2px solid green; */
-  margin-top: 10px;
-}
+
 #inputSize{
   width: 130px;
 }
